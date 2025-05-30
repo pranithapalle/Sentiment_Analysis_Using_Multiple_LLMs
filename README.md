@@ -1,6 +1,4 @@
-# Sentiment_Analysis_Using_Multiple_LLMs
-
-App URL: https://pranitha-ai3-588061242359.us-central1.run.app 
+# Sentiment_Analysis_Using_Multi_Model_LLMs
 
 The project focuses on building an advanced audio analysis application utilizing Google Cloud's 
 multimodal Large Language Model (LLM) API. This updated implementation replaces previously used 
