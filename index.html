@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Audio Analyzer & Feedback</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: radial-gradient(circle at top, #1a2a6c, #b21f1f, #fdbb2d);
+      color: white;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .gradient-button {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      font-weight: 600;
+      padding: 12px 20px;
+      border-radius: 10px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .gradient-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(106, 17, 203, 0.6);
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #6a11cb;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .hidden { display: none; }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+  <div class="bg-gray-800 rounded-xl shadow-lg p-6 max-w-lg w-full">
+    <h1 class="text-3xl font-bold text-center mb-6 text-indigo-300">Audio Analyzer & Feedback</h1>
+
+    <!-- Record Section -->
+    <section>
+      <h2 class="text-xl font-semibold text-gray-300 mb-4">Capture Your Voice</h2>
+      <div class="flex justify-between mb-4">
+        <button id="recordButton" class="gradient-button flex items-center">
+          <i class="fas fa-microphone mr-2"></i> Start Voice Capture
+        </button>
+        <button id="stopButton" class="gradient-button bg-gray-600" disabled>
+          <i class="fas fa-stop mr-2"></i> End Capture
+        </button>
+      </div>
+
+      <!-- Recording Spinner -->
+      <div id="recordingSpinner" class="flex items-center justify-center mb-4 hidden">
+        <div class="spinner"></div>
+        <span class="text-indigo-300 font-medium ml-2">Capturing...</span>
+      </div>
+
+      <!-- Playback Section -->
+      <div>
+        <h3 class="text-lg font-medium text-gray-300 mb-2">Listen to Your Recording</h3>
+        <audio id="playbackAudio" controls class="w-full rounded-lg shadow-md"></audio>
+      </div>
+    </section>
+
+    <hr class="my-6 border-gray-600">
+
+    <!-- Response Section -->
+    <section>
+      <h2 class="text-xl font-semibold text-gray-300 mb-4">Analysis Results</h2>
+      <div id="responseSpinner" class="flex items-center justify-center mb-4 hidden">
+        <div class="spinner"></div>
+        <span class="text-blue-400 font-medium ml-2">Analyzing...</span>
+      </div>
+      <div id="responseSection" class="hidden">
+        <h3 class="text-lg font-medium text-gray-300 mb-2">Generated Audio Feedback</h3>
+        <audio id="responseAudio" controls class="w-full rounded-lg shadow-md mb-4"></audio>
+        <a id="downloadAudioLink" href="#" download class="gradient-button flex items-center">
+          <i class="fas fa-download mr-2"></i> Download Feedback
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
